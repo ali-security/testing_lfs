@@ -13,5 +13,5 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref || github.ref_name }} # To run GH on branch: https://github.com/actions/checkout/issues/317
           lfs: false
       - name: "Check LFS files are only pointers (resolve using `git lfs migrate import --fixup --everything`)"
-        run: "git lfs fsck | grep unexpectedGitObject | wc -l | xargs test 0 -eq"
+        run: "git lfs fsck | grep unexpectedGitObject | tee /dev/tty | wc -l | xargs test 0 -eq"
 
